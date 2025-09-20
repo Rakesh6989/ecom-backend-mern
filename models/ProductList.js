@@ -27,4 +27,5 @@ const productschema = mongoose.Schema(
   { timestamps: true }
 );
 const ProductsItems = mongoose.model("ProductList", productschema);
-export default ProductsItems;
+const TrendingProducts = mongoose.model("TrendingProducts", productschema);
+export { ProductsItems, TrendingProducts };

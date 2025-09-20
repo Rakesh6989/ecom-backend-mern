@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import userRoutes from "./Routes/userRoutes.js";
 import mainproductroute from "./Routes/mainproductroute.js";
+import trendingProducts from "./Routes/trendingProducts.js";
 import contactRoutes from "./Routes/contactroute.js";
 dotenv.config();
 
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use("/api/users", userRoutes);
 app.use("/", contactRoutes);
 app.use("/products", mainproductroute);
+app.use("/products", trendingProducts);
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
