@@ -1,4 +1,4 @@
-import{ TrendingProducts} from "../models/ProductList.js";
+import{ featureProducts} from "../models/ProductList.js";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import path from "path";
@@ -12,8 +12,8 @@ const productItems = [
     name: 'Dell Inspiron 15, 13th Gen Intel Core i5, 16GB RAM, 512GB SSD, 15.6" FHD Laptop',
     brand: "Dell",
     images: [
-      "https://m.media-amazon.com/images/I/710ChwsODKL._SX679_.jpg",
-      "https://m.media-amazon.com/images/I/814HgUR0+LL._SX679_.jpg",
+      "https://m.media-amazon.com/images/I/61k0gpxQwCL._SX679_.jpg",
+      "https://m.media-amazon.com/images/I/61Xkk+I8kGL._SX679_.jpg",
       "https://m.media-amazon.com/images/I/613Spym7-iL._SX679_.jpg",
       "https://m.media-amazon.com/images/I/61xkR83q-dL._SX679_.jpg",
       "https://m.media-amazon.com/images/I/61cbM95yWnL._SX679_.jpg",
@@ -53,7 +53,7 @@ Combine style, portability, and performance, and you get a laptop that fits seam
     name: 'Lenovo IdeaPad Gaming 3, Ryzen 5, 16GB RAM, RTX 3050, 512GB SSD, 15.6" FHD Laptop',
     brand: "Lenovo",
     images: [
-      "https://m.media-amazon.com/images/I/71D9HSayVSL._SX679_.jpg",
+      "https://m.media-amazon.com/images/I/41TFSAlr4gL._SX300_SY300_QL70_FMwebp_.jpg",
       "https://m.media-amazon.com/images/I/71Cj3RJhqiL._SX679_.jpg",
       "https://m.media-amazon.com/images/I/51RjxyCWWlL._SX679_.jpg",
       "https://m.media-amazon.com/images/I/61H96HbSqTL._SX679_.jpg",
@@ -93,7 +93,7 @@ Perfect for casual and hardcore gamers alike, this laptop turns every session in
     name: 'Acer Aspire Go 14, Intel Core i5, 8GB RAM, 512GB SSD, 15.6" FHD Laptop',
     brand: "Acer",
     images: [
-      "https://m.media-amazon.com/images/I/71JI131B9SL._SX679_.jpg",
+      "https://m.media-amazon.com/images/I/41D8ChZHcEL._SX300_SY300_QL70_FMwebp_.jpg",
       "https://m.media-amazon.com/images/I/61cQzA-BYwL._SX679_.jpg",
       "https://m.media-amazon.com/images/I/81aCWSKdz-L._SX679_.jpg",
       "https://m.media-amazon.com/images/I/71xcBBdAX9L._SX679_.jpg",
@@ -176,10 +176,10 @@ Experience convenience and power in a single device that works exactly how you n
   },
   {
     id: 5,
-    name: 'HP Pavilion 14, 12th Gen Intel Core i5, 16GB RAM, 512GB SSD, 14" FHD Laptop',
+    name: 'HP Pavilion 14, 13th Gen Intel Core i5, 16GB RAM, 512GB SSD, 14" FHD Laptop',
     brand: "HP",
     images: [
-      "https://m.media-amazon.com/images/I/417rsO6vKaL._SX300_SY300_QL70_FMwebp_.jpg",
+      "https://m.media-amazon.com/images/I/41GQ7vEjQlL._SX300_SY300_QL70_FMwebp_.jpg`",
       "https://m.media-amazon.com/images/I/81VkqRHuCxL._SX679_.jpg",
       "https://m.media-amazon.com/images/I/712kewcGJaL._SX679_.jpg",
       "https://m.media-amazon.com/images/I/81H7vrv1fuL._SX679_.jpg",
@@ -220,7 +220,8 @@ mongoose
   .connect(process.env.MONGOURI)
   .then(async () => {
     console.log("MongoDB Connected");
-    await TrendingProducts.insertMany(productItems);
+    // await featureProducts.deleteMany({});
+    await featureProducts.insertMany(productItems);
     console.log("Products inserted successfully");
     mongoose.disconnect();
   })

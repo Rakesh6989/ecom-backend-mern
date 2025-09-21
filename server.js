@@ -6,6 +6,7 @@ import userRoutes from "./Routes/userRoutes.js";
 import mainproductroute from "./Routes/mainproductroute.js";
 import trendingProducts from "./Routes/trendingProducts.js";
 import contactRoutes from "./Routes/contactroute.js";
+import  featureProdRoute from "./Routes/featureProducts.js"
 dotenv.config();
 
 const app = express();
@@ -19,6 +20,7 @@ app.use("/api/users", userRoutes);
 app.use("/", contactRoutes);
 app.use("/products", mainproductroute);
 app.use("/products", trendingProducts);
+app.use("/products", featureProdRoute);
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });

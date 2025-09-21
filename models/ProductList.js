@@ -28,4 +28,5 @@ const productschema = mongoose.Schema(
 );
 const ProductsItems = mongoose.model("ProductList", productschema);
 const TrendingProducts = mongoose.model("TrendingProducts", productschema);
-export { ProductsItems, TrendingProducts };
+const featureProducts = mongoose.model("FeatureProduct", productschema);
+export { ProductsItems, TrendingProducts, featureProducts };
