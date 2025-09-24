@@ -16,7 +16,7 @@ app.use(cors());
 console.log(MONGO_URI);
 console.log("Mongo URI:", MONGO_URI);
 app.use(express.json());
-app.use("/api/users", userRoutes);
+app.use("/", userRoutes);
 app.use("/", contactRoutes);
 app.use("/products", mainproductroute);
 app.use("/products", trendingProducts);
