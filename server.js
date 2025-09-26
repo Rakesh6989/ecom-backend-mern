@@ -18,9 +18,10 @@ console.log("Mongo URI:", MONGO_URI);
 app.use(express.json());
 app.use("/", userRoutes);
 app.use("/", contactRoutes);
-app.use("/products", mainproductroute);
 app.use("/products", trendingProducts);
 app.use("/products", featureProdRoute);
+app.use("/products", mainproductroute);
+
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
