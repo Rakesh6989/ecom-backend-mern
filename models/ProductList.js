@@ -13,6 +13,8 @@ const productschema = mongoose.Schema(
       average: { type: Number, default: 0 },
       total: { type: Number, default: 0 },
     },
+    quantity: { type: Number, required: true },
+    prodCategory: { type: String },
     instock: { type: Boolean, default: true },
     specifications: { type: Map, of: String },
     offers: { type: [String], default: [] },
