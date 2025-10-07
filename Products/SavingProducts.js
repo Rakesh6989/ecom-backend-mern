@@ -27,14 +27,14 @@ const run = async () => {
         const docs = await model.find();
         await Promise.all(
           docs.map(async (doc) => {
-            docs.prodCategory = category;
+            doc.prodCategory = category;
             await doc.save();
           })
         );
+        console.log(`Updated ${category} products`);
       })
     );
 
-    console.log(`Updated ${category} products`);
     await mongoose.disconnect();
   } catch (error) {
     console.error("Error updating products:", error);
