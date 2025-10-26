@@ -1,37 +1,27 @@
 import express from "express";
-import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
+import connectDB from "./config/db.js";
 import userRoutes from "./Routes/userRoutes.js";
-import mainproductroute from "./Routes/mainproductroute.js";
-import trendingProducts from "./Routes/trendingProducts.js";
-import contactRoutes from "./Routes/contactroute.js";
-import  featureProdRoute from "./Routes/featureProducts.js"
+import contactRoutes from "./routes/contactroute.js";
+import mainproductroute from "./routes/mainproductroute.js";
+import trendingProducts from "./routes/trendingProducts.js";
+import featureProdRoute from "./routes/featureProducts.js";
+
 dotenv.config();
+connectDB(); // 👈 bas call yahan se hoga
 
 const app = express();
-const PORT = process.env.PORT || 3000;
-const MONGO_URI = process.env.MONGOURI;
 app.use(cors());
-console.log(MONGO_URI);
-console.log("Mongo URI:", MONGO_URI);
 app.use(express.json());
+
 app.use("/", userRoutes);
 app.use("/", contactRoutes);
 app.use("/products", trendingProducts);
 app.use("/products", featureProdRoute);
 app.use("/products", mainproductroute);
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
-mongoose
-  .connect(MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    serverSelectionTimeoutMS: 30000,
-  })
-  .then(() => console.log("Connected"))
-  .catch((e) => console.log(e));
+app.get("/", (req, res) => res.send("Hello World!"));
 
-app.listen(PORT, () => console.log("Port is running on", PORT));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`🚀 Server running on ${PORT}`));
