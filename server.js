@@ -7,9 +7,9 @@ import contactRoutes from "./routes/contactroute.js";
 import mainproductroute from "./routes/mainproductroute.js";
 import trendingProducts from "./routes/trendingProducts.js";
 import featureProdRoute from "./routes/featureProducts.js";
-
+import adminroute from "./Routes/adminroute.js";
 dotenv.config();
-connectDB(); // 👈 bas call yahan se hoga
+connectDB();
 
 const app = express();
 app.use(cors());
@@ -21,6 +21,7 @@ app.use("/products", trendingProducts);
 app.use("/products", featureProdRoute);
 app.use("/products", mainproductroute);
 
+app.use("/", adminroute);
 app.get("/", (req, res) => res.send("Hello World!"));
 
 const PORT = process.env.PORT || 3000;
