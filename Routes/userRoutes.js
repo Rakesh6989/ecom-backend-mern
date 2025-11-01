@@ -2,6 +2,7 @@ import express from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import User from "../models/user.js";
+import { verifyToken } from "../middleware/authMiddleware.js";
 const router = express.Router();
 
 router.post("/register-user", async (req, res) => {
@@ -37,6 +38,7 @@ router.post("/register-user", async (req, res) => {
   }
 });
 
+
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
@@ -65,7 +67,7 @@ router.post("/login", async (req, res) => {
       { expiresIn: "1h" }
     );
 
-    console.log("✅ User logged in successfully",token);
+    console.log("✅ User logged in successfully", token);
     return res.status(200).json({
       message: "User logged in successfully",
       token,
@@ -79,6 +81,16 @@ router.post("/login", async (req, res) => {
     console.error("Login error:", error);
     return res.status(500).json({ message: "Internal server error" });
   }
+});
+
+router.post("/change-password", verifyToken, async (req, res) => {
+  const { newPassword } = req.body;
+  const user = await User.findById(req.user.id);
+  if (!user)
+    return res.status(400).json({ message: "User Not found with this Email" });
+  user.pass = await bcrypt.hash(newPassword, 10);
+  await user.save();
+  res.json({ message: "Password Changed Successfully" });
 });
 
 export default router;
